@@ -44,7 +44,7 @@ export default function AddNewLearningPath() {
   // Remove the last topic and adjust days accordingly
   const removeLastTopic = () => {
     
-    if (topics.length > 1) {
+    if (topics.length >= 1) {
         const newTopics = topics.slice(0, -1); // Remove the last topic
     
         
