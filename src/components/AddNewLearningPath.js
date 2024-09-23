@@ -1,116 +1,141 @@
 import React, { useState } from 'react';
+import { TextField, Button, Typography, Paper, Grid2 } from '@mui/material';
+import LearningPathComponent from './LearningPathComponent'; // Import the learning path component
 
 export default function AddNewLearningPath() {
   const [unitNumber, setUnitNumber] = useState(1);
+  const [generateLearningPath, setGenerateLearningPath] = useState(false);
   const [unitName, setUnitName] = useState("");
+  const [subjectName, setSubjectName] = useState("Computer Science");
   const [topics, setTopics] = useState([{ topicName: "", day: 1 }]);
-  const [allUnits, setAllUnits] = useState([]);
-  const [globalDay, setGlobalDay] = useState(1); // Global day counter
+  const [units, setUnits] = useState([]);
+  const [globalDay, setGlobalDay] = useState(1);
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Save current unit details into the array
     const newUnit = {
       unitNumber,
       unitName,
-      topics: [...topics], // Save the topics
+      topics: [...topics],
     };
-
-    setAllUnits([...allUnits, newUnit]);
-
-    // Reset form for the next unit, but days will not reset
+    setUnits([...units, newUnit]);
     setUnitNumber(unitNumber + 1);
     setUnitName("");
     setTopics([{ topicName: "", day: globalDay + 1 }]);
-    setGlobalDay(globalDay+1);
+    setGlobalDay(globalDay + 1);
   };
 
-  // Handle change in topics
   const handleTopicChange = (index, event) => {
     const newTopics = [...topics];
     newTopics[index][event.target.name] = event.target.value;
     setTopics(newTopics);
   };
 
-  // Add a new topic and automatically assign the next global day
   const addTopic = () => {
-    const nextDay = globalDay + 1; // Automatically allocate the next global day
+    const nextDay = globalDay + 1;
     setTopics([...topics, { topicName: "", day: nextDay }]);
-    setGlobalDay(nextDay); // Increment the global day counter
+    setGlobalDay(nextDay);
   };
 
-  // Remove the last topic and adjust days accordingly
   const removeLastTopic = () => {
-    
     if (topics.length >= 1) {
-        const newTopics = topics.slice(0, -1); // Remove the last topic
-    
-        
-        setGlobalDay(globalDay-1);
-        setTopics(newTopics);
-        
-      }
+      const newTopics = topics.slice(0, -1);
+      setTopics(newTopics);
+      setGlobalDay(globalDay - 1);
+    }
+  };
+
+  const finalData = {
+    subjectName,
+    units
   };
 
   return (
-    <div>
+    <Paper elevation={3} style={{ padding: '20px', maxWidth: '600px', margin: 'auto' }}>
+      <Typography variant="h4" gutterBottom>Add New Learning Path</Typography>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Unit Number:</label>
-          <input
-            type="number"
-            value={unitNumber}
-            onChange={(e) => setUnitNumber(Number(e.target.value))}
-            required
-          />
-        </div>
+        <TextField
+          label="Subject Name"
+          variant="outlined"
+          fullWidth
+          value={subjectName}
+          onChange={(e) => setSubjectName(e.target.value)}
+          required
+          margin="normal"
+        />
 
-        <div>
-          <label>Unit Name:</label>
-          <input
-            type="text"
-            value={unitName}
-            onChange={(e) => setUnitName(e.target.value)}
-            required
-          />
-        </div>
+        <TextField
+          label="Unit Number"
+          variant="outlined"
+          type="number"
+          fullWidth
+          value={unitNumber}
+          onChange={(e) => setUnitNumber(Number(e.target.value))}
+          required
+          margin="normal"
+        />
 
-        <div>
-          <label>Topics:</label>
-          {topics.map((topic, index) => (
-            <div key={index}>
-              <label>Day {topic.day}</label>
-              <input
-                type="text"
+        <TextField
+          label="Unit Name"
+          variant="outlined"
+          fullWidth
+          value={unitName}
+          onChange={(e) => setUnitName(e.target.value)}
+          required
+          margin="normal"
+        />
+
+        <Typography variant="h6" gutterBottom>Topics:</Typography>
+        {topics.map((topic, index) => (
+          <Grid2 container spacing={1} alignItems="center" key={index}>
+            <Grid2 item xs={8} style={{ marginTop: '10px' }}>
+              <TextField
+                label={`Day ${topic.day}`}
+                variant="outlined"
+                fullWidth
                 name="topicName"
                 value={topic.topicName}
                 onChange={(e) => handleTopicChange(index, e)}
                 placeholder={`Topic ${index + 1}`}
                 required
               />
-              {/* Remove button only for the last topic */}
+            </Grid2>
+            <Grid2 item xs={4}>
               {index === topics.length - 1 && (
-                <button type="button" onClick={removeLastTopic}>
+                <Button variant="outlined" color="error" onClick={removeLastTopic}>
                   Remove
-                </button>
+                </Button>
               )}
-            </div>
-          ))}
-          <button type="button" onClick={addTopic}>
-            Add Topic
-          </button>
-        </div>
+            </Grid2>
+          </Grid2>
+        ))}
+        <Button variant="contained" onClick={addTopic} style={{ marginTop: '10px', marginRight: '20px' }}>
+          Add Topic
+        </Button>
 
-        <button type="submit">Save Unit & Add Next Unit</button>
+        <Button type="submit" variant="contained" color="primary" style={{ marginTop: '10px' }}>
+          Save Unit & Add Next Unit
+        </Button>
+
+        <Button
+          onClick={() => setGenerateLearningPath(true)}
+          variant="contained"
+          color="primary"
+          style={{ marginTop: '10px' }}
+        >
+          Generate Learning Path
+        </Button>
       </form>
 
-      {/* Display All Units */}
-      <div>
-        <h2>All Units</h2>
-        <pre>{JSON.stringify(allUnits, null, 2)}</pre>
+      {/* Display Final Structured Data */}
+      <div style={{ marginTop: '20px' }}>
+        {/* <Typography variant="h6">Final Structured Data</Typography>
+        <pre>{JSON.stringify(finalData, null, 2)}</pre> */}
+
       </div>
-    </div>
+
+      {/* Conditionally render the Learning Path Component */}
+      {generateLearningPath && <LearningPathComponent learningData={finalData} />}
+    </Paper>
   );
 }
