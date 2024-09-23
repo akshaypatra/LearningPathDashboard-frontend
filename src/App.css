@@ -79,6 +79,7 @@ margin: 0px;
   color: rgb(238, 237, 237);
   background-color: rgb(76, 169, 203) ;
   height: 30px;
+  font-size: 15px;
 }
 
 .learning-path-create-button:hover{

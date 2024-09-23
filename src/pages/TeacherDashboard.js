@@ -1,6 +1,12 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
+import { FaPlus } from "react-icons/fa6";
 
 export default function TeacherDashboard() {
+    const navigate=useNavigate();
+    const goToAddLearningPathPage=()=>{
+        navigate("/new-learning-path");
+    }
   return (
     <div>
         <h1 className='teacher-dashboard-header'>Dashboard</h1>
@@ -9,7 +15,7 @@ export default function TeacherDashboard() {
             No learning paths yet
             <br></br>
 
-         <button className='learning-path-create-button'>Create One</button>
+         <button onClick={goToAddLearningPathPage} className='learning-path-create-button'><FaPlus size={18}  className='react-icons' />Add New</button>
         </section>
 
 
