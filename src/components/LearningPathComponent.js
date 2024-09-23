@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Typography, Grid2, Paper } from '@mui/material';
+import { Container, Typography, Grid2} from '@mui/material';
 
 const LearningPathComponent = ({ learningData }) => {
   const generateLearningPath = () => {
@@ -24,25 +24,27 @@ const LearningPathComponent = ({ learningData }) => {
   const learningPath = generateLearningPath();
 
   return (
-    <Container>
-      <Typography variant="h4" gutterBottom>
-        Learning Path: {learningData.subjectName}
+    <Container className='learning-path'>
+      <Typography variant="h4" gutterBottom >
+        {learningData.subjectName}
       </Typography>
-      <Grid2 container spacing={3} style={{liststyle:'None'}}>
+      <Grid2 container spacing={3}  >
         {Object.keys(learningPath).map((day) => (
-          <Grid2 item xs={12} md={6} key={day} style={{ width:'100vh'  }}>
-            <Paper elevation={3}>
-              <Typography variant="h5">Day {day}</Typography>
-              <ul>
+          <Grid2 item xs={12} md={6} key={day} style={{ width:'100vh' }} >
+            <div className="learning-path-grid-component" >
+              <Typography variant="h5" className='learning-path-grid-component-day' >Day {day}</Typography>
+              <ul style={{listStyle:'None',textAlign:'center'}}>
                 {learningPath[day].map((topic, index) => (
                   <li key={index}>
-                    <Typography variant="body1">
-                      {topic.unitName}: {topic.topicName}
-                    </Typography>
+                    <div className='learning-path-grid-component-body'>
+                        <p>Unit : {topic.unitName}</p>
+                        
+                        <p>Topic : {topic.topicName}</p>
+                    </div>
                   </li>
                 ))}
               </ul>
-            </Paper>
+            </div>
           </Grid2>
         ))}
       </Grid2>

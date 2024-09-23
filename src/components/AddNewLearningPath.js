@@ -51,6 +51,8 @@ export default function AddNewLearningPath() {
   };
 
   return (
+    <div className='add-new-learning-path-section'>
+        <section className='add-new-learning-path-form'>
     <Paper elevation={3} style={{ padding: '20px', maxWidth: '600px', margin: 'auto' }}>
       <Typography variant="h4" gutterBottom>Add New Learning Path</Typography>
       <form onSubmit={handleSubmit}>
@@ -127,15 +129,22 @@ export default function AddNewLearningPath() {
         </Button>
       </form>
 
-      {/* Display Final Structured Data */}
-      <div style={{ marginTop: '20px' }}>
-        {/* <Typography variant="h6">Final Structured Data</Typography>
-        <pre>{JSON.stringify(finalData, null, 2)}</pre> */}
+      
 
-      </div>
-
-      {/* Conditionally render the Learning Path Component */}
-      {generateLearningPath && <LearningPathComponent learningData={finalData} />}
+      
+      
     </Paper>
+    </section>
+    <section className='generated-learning-path-section'>
+        <h1 className='generated-learning-path-section-header'>Generated Learning Path</h1>
+        {generateLearningPath ? (
+          <LearningPathComponent learningData={finalData} />
+        ) : (
+          <Typography variant="body1" color="textSecondary" className='alternate-message-learning-path'>
+            No learning path generated.
+          </Typography>
+        )}
+    </section>
+    </div>
   );
 }
