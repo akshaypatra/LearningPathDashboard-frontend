@@ -1,38 +1,61 @@
-.App {
-  text-align: center;
+
+body{
+margin: 0px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* App.js css */
+
+.App{
+  display: grid;
+  grid-template-columns: 15% 85%;
+  height: 100vh;
+  margin: 0px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navbar-section{
+  border: 1px solid black;
+  background-color: rgb(189, 37, 189);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.body-section{
+  padding: 1rem;
 }
 
-.App-link {
-  color: #61dafb;
+/* Navbar.js */
+.navbar{
+  padding: 1rem;
+  color:  rgb(238, 237, 237);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Teacher Dasboard .js */
+
+
+.teacher-dashboard-header{
+  font-family: cursive;
+  height: 30px;
+}
+.LearningPathsSection-teacher{
+  border: 1px ;
+  border-radius: 20px;
+  background-color: rgb(240, 237, 237) ;
+  padding: 1rem;
+}
+
+.learning-path-create-button{
+  margin-top: 2vh;
+  border-radius: 7px;
+  border: 0px;
+  color: rgb(238, 237, 237);
+  background-color:rgb(229, 82, 229) ;
+  height: 30px;
+}
+
+.learning-path-create-button:hover{
+  background-color:rgba(229, 82, 229, 0.734) ;
+  cursor:pointer;
+}
+
+.LearningPathsSection-teacher-header{
+     font-family: cursive;
+     font-size: 28px;
 }
