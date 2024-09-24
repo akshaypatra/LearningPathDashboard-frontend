@@ -76,7 +76,7 @@ margin: 0px;
 .teacher-dashboard-header{
   font-family: cursive;
   font-size: 40px;
-  height: 30px;
+  margin-bottom:20px;
 }
 .LearningPathsSection-teacher{
   border: 1px ;
@@ -187,3 +187,31 @@ margin: 0px;
   text-align: center;
   font-size: 20px;
 }
+
+
+/* LearningPathViewer.js */
+
+.learning-path-viewer{
+  display: flex;
+  gap: 3rem;
+  overflow: scroll;
+}
+.learning-path-viewer-path{
+  text-align: center;
+  font-family:fantasy;
+  margin-top: 1rem;
+}
+.learning-path-viewer-subject{
+  text-align: center;
+  font-family:fantasy;
+}
+
+.learning-path-viewer-component-container{
+  border: 4px solid rgb(119, 187, 219);
+  max-height: 70vh;
+  overflow: scroll;
+  padding: 20px;
+  width: 20rem;
+  border-radius: 20px;
+}
+
