@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/LearningPathDashboard-frontend/static/css/main.b6d1a369.css",
+    "main.js": "/LearningPathDashboard-frontend/static/js/main.c3cacf5d.js",
+    "static/js/453.8ab44547.chunk.js": "/LearningPathDashboard-frontend/static/js/453.8ab44547.chunk.js",
+    "index.html": "/LearningPathDashboard-frontend/index.html",
+    "main.b6d1a369.css.map": "/LearningPathDashboard-frontend/static/css/main.b6d1a369.css.map",
+    "main.c3cacf5d.js.map": "/LearningPathDashboard-frontend/static/js/main.c3cacf5d.js.map",
+    "453.8ab44547.chunk.js.map": "/LearningPathDashboard-frontend/static/js/453.8ab44547.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b6d1a369.css",
+    "static/js/main.c3cacf5d.js"
+  ]
+}
