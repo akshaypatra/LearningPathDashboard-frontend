@@ -148,7 +148,7 @@ margin: 0px;
   }
 
   .generated-learning-path-section{
-    width:500px;
+    width:100%;
     background-color:  rgb(240, 237, 237);
     border-radius: 20px;
     overflow: scroll;
@@ -157,7 +157,7 @@ margin: 0px;
     
   }
   .add-new-learning-path-form{
-    width: 500px;
+    width:100%;
     margin: 0px;
   }
 }
@@ -220,7 +220,7 @@ margin: 0px;
 @media (max-width: 1200px){
 
   .LearningPathsSection-teacher{
-    width: 500px;
+    width: 100%;
   }
 
   .learning-path-viewer{
@@ -232,7 +232,7 @@ margin: 0px;
   }
 
   .learning-path-viewer-component-container{
-    width:450px;
+    width:100%;
   }
 
 }
