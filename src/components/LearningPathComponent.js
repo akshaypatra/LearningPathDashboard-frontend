@@ -8,6 +8,7 @@ const LearningPathComponent = ({ learningData }) => {
       unit.topics.forEach((topic) => {
         const day = topic.day;
         const topicEntry = {
+          unitNumber:unit.unitNumber,
           unitName: unit.unitName,
           topicName: topic.topicName,
         };
@@ -18,6 +19,7 @@ const LearningPathComponent = ({ learningData }) => {
         learningPath[day].push(topicEntry);
       });
     });
+    
     return learningPath;
   };
 
@@ -37,7 +39,7 @@ const LearningPathComponent = ({ learningData }) => {
                 {learningPath[day].map((topic, index) => (
                   <li key={index}>
                     <div className='learning-path-grid-component-body'>
-                        <p>Unit : {topic.unitName}</p>
+                        <p>Unit {topic.unitNumber} : {topic.unitName}</p>
                         
                         <p>Topic : {topic.topicName}</p>
                     </div>

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { TextField, Button, Typography, Paper, Grid2 } from '@mui/material';
 import LearningPathComponent from './LearningPathComponent'; // Import the learning path component
+import { LearningPathContext } from '../Context/LearningPathContext';
 
-export default function AddNewLearningPath() {
+export default function AddNewLearningPath(props) {
   const [unitNumber, setUnitNumber] = useState(1);
   const [generateLearningPath, setGenerateLearningPath] = useState(false);
   const [unitName, setUnitName] = useState("");
@@ -11,6 +12,8 @@ export default function AddNewLearningPath() {
   const [units, setUnits] = useState([]);
   const [globalDay, setGlobalDay] = useState(1);
 
+  const { learningPaths, setLearningPaths } = useContext(LearningPathContext);
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     const newUnit = {
@@ -23,6 +26,21 @@ export default function AddNewLearningPath() {
     setUnitName("");
     setTopics([{ topicName: "", day: globalDay + 1 }]);
     setGlobalDay(globalDay + 1);
+  };
+
+
+  const generatePath = () => {
+    const newLearningPath = {
+      learningPathId: String(learningPaths.length + 1),  // Assign a unique ID based on the current number of paths
+      subjectName,
+      learningPath: [...units],
+    };
+
+    // Update the global state by adding the new learning path to the array
+    setLearningPaths([...learningPaths, newLearningPath]);
+
+    setGenerateLearningPath(true) ; 
+    props.showAlert("Learning path generated successfully","success");
   };
 
   const handleTopicChange = (index, event) => {
@@ -42,6 +60,7 @@ export default function AddNewLearningPath() {
       const newTopics = topics.slice(0, -1);
       setTopics(newTopics);
       setGlobalDay(globalDay - 1);
+      props.showAlert("Topic removed successfully","success");
     }
   };
 
@@ -115,12 +134,12 @@ export default function AddNewLearningPath() {
           Add Topic
         </Button>
 
-        <Button type="submit" variant="contained" color="primary" style={{ marginTop: '10px' }}>
+        <Button type="submit" onClick={()=>{props.showAlert("Unit saved  successfully","success");}}  variant="contained" color="primary" style={{ marginTop: '10px' }}>
           Save Unit & Add Next Unit
         </Button>
 
         <Button
-          onClick={() => setGenerateLearningPath(true)}
+          onClick={generatePath}
           variant="contained"
           color="primary"
           style={{ marginTop: '10px' }}
@@ -138,7 +157,7 @@ export default function AddNewLearningPath() {
     <section className='generated-learning-path-section'>
         <h1 className='generated-learning-path-section-header'>Generated Learning Path</h1>
         {generateLearningPath ? (
-          <LearningPathComponent learningData={finalData} />
+          <LearningPathComponent learningData={finalData}  />
         ) : (
           <Typography variant="body1" color="textSecondary" className='alternate-message-learning-path'>
             No learning path generated.
