@@ -28,7 +28,7 @@ margin: 0px;
   padding: 1rem;
 }
 
-@media (max-width: 668px){
+@media (max-width: 750px){
   .App{
     display: flex;
     flex-direction: column;
@@ -36,7 +36,7 @@ margin: 0px;
     margin: 0px;
   }
   .navbar-section{
-    width: 550px;
+    width: 100%;
     margin: 0px;
   }
 }
@@ -154,6 +154,7 @@ margin: 0px;
     overflow: scroll;
     max-height: 900px;
     margin-top: 1rem;
+    
   }
   .add-new-learning-path-form{
     width: 500px;
@@ -215,3 +216,23 @@ margin: 0px;
   border-radius: 20px;
 }
 
+
+@media (max-width: 1200px){
+
+  .LearningPathsSection-teacher{
+    width: 500px;
+  }
+
+  .learning-path-viewer{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    overflow: scroll;
+    
+  }
+
+  .learning-path-viewer-component-container{
+    width:450px;
+  }
+
+}
