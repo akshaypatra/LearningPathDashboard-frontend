@@ -34,6 +34,7 @@ Automated alerts notify educators and learners of upcoming deadlines, missed ass
 
 ###  7.Resource Integration: 
 
+
 Educators can upload various resources, such as PDFs and Excel files, directly to the dashboard, making it easy for students to access relevant materials.
 Integration with other educational tools and platforms for a seamless user experience.
 
@@ -41,3 +42,17 @@ Integration with other educational tools and platforms for a seamless user exper
 
 The dashboard features an intuitive layout, making it easy for users of all technical skill levels to navigate.
 Responsive design ensures accessibility across devices, including desktops, tablets, and smartphones.
+
+## Website Overview 
+
+Dasboard page 
+
+<img width="1680" alt="Screenshot 2024-09-24 at 12 12 38" src="https://github.com/user-attachments/assets/160b3258-445e-4589-8475-3d0fd1b03cd1">
+
+
+
+To add new learning path
+
+<img width="1671" alt="Screenshot 2024-09-24 at 12 11 22" src="https://github.com/user-attachments/assets/a4726dd2-f458-4de3-b7ea-17a5076d311b">
+
+
