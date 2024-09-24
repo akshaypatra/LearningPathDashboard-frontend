@@ -45,13 +45,13 @@ Responsive design ensures accessibility across devices, including desktops, tabl
 
 ## Website Overview 
 
-Dasboard page 
+### Dashboard page 
 
 <img width="1680" alt="Screenshot 2024-09-24 at 12 12 38" src="https://github.com/user-attachments/assets/160b3258-445e-4589-8475-3d0fd1b03cd1">
 
 
 
-To add new learning path
+### To add new learning path
 
 <img width="1671" alt="Screenshot 2024-09-24 at 12 11 22" src="https://github.com/user-attachments/assets/a4726dd2-f458-4de3-b7ea-17a5076d311b">
 
