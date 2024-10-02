@@ -7,6 +7,8 @@ import AddNewLearningPath from './components/AddNewLearningPath';
 import { useState } from 'react';
 import Alert from './components/Alert';
 import { LearningPathProvider } from './Context/LearningPathContext';
+import ProfilePage from './pages/ProfilePage';
+import AnalyticsPage from './pages/AnalyticsPage';
 
 function App() {
 
@@ -37,7 +39,8 @@ function App() {
           
           <Route path='/'  element={<TeacherDashboard showAlert={showAlert} />}  /> 
           <Route path='/new-learning-path' element={<AddNewLearningPath showAlert={showAlert} />} /> 
-             
+          <Route path='/profile' element={<ProfilePage showAlert={showAlert} />} />  
+          <Route path='/analytics' element={<AnalyticsPage showAlert={showAlert} />} /> 
        </Routes>
        </LearningPathProvider> 
        </section>

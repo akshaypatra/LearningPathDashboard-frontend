@@ -10,8 +10,9 @@ export default function NavBar() {
         <h1 className='navbar-header'>Learning Path</h1>
         <div className='navbar-links'>
             <Link to='/' className='navbar-link-dashboard'> <GoHome size={24}  className='react-icons' />Dashboard</Link> 
-            <Link to='/' className='navbar-link-dashboard'> <SiSimpleanalytics size={18}  className='react-icons' /> Analytics</Link>
-            <Link to='/' className='navbar-link-dashboard'> <FaUser size={18}  className='react-icons' /> Profile</Link>
+            <Link to='/analytics' className='navbar-link-dashboard'> <SiSimpleanalytics size={18}  className='react-icons' /> Analytics</Link>
+            <Link to='/profile' className='navbar-link-dashboard'> <FaUser size={18}  className='react-icons' /> Profile</Link>
+            
         </div>
     </div>
   )
