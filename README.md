@@ -56,3 +56,9 @@ Responsive design ensures accessibility across devices, including desktops, tabl
 <img width="1671" alt="Screenshot 2024-09-24 at 12 11 22" src="https://github.com/user-attachments/assets/a4726dd2-f458-4de3-b7ea-17a5076d311b">
 
 
+### Analytics of class 
+
+<img width="1680" alt="Screenshot 2024-10-03 at 21 49 42" src="https://github.com/user-attachments/assets/02aa1ed5-0817-490b-87ea-bf215334d239">
+
+
+
