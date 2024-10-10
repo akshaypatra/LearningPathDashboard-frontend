@@ -37,7 +37,10 @@ const CalendarEvents = () => {
         events={events}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: 500 }}
+        style={{ 
+          height: 500,
+          backgroundColor: '#d9f7fc', 
+         }}
       />
     </div>
   );

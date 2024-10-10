@@ -51,6 +51,7 @@ margin: 0px;
 
   font-family: cursive;
   font-size: 30px;
+  margin-bottom: 5rem;
 }
 
 .navbar-links{
@@ -68,6 +69,15 @@ margin: 0px;
 
 .navbar-link-dashboard:hover{
   color:rgba(238, 237, 237, 0.81) ;
+}
+
+@media (max-width: 1200px){
+  .navbar-header{
+
+    font-family: cursive;
+    font-size: 30px;
+    margin-bottom: 0px;
+  }
 }
 
 /* Teacher Dasboard .js */
@@ -323,9 +333,55 @@ margin: 0px;
 
 /* TeacherProfileComponent.js */
 
-.calendar-section{
+.teacher-info{
+  display: flex;
   
 }
 
-/* CalendarEvents.js */
+
+
+.teacher-imageAndName{
+  
+  text-align: center;
+  padding: 20px;
+}
+
+#teacher-image{
+  height: 16rem;
+  border-radius: 30px;
+  margin-bottom: 10px;
+  
+}
+#teacher-name{
+  font-family:cursive;
+  color: rgb(70, 172, 230);
+}
+
+.calendar-section{
+  border: 4px solid rgb(42, 165, 189);
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  font-family: cursive;
+  margin-top: 20px;
+}
+
+
+
+@media (max-width: 1200px){
+  .teacher-info{
+    display: flex;
+    flex-direction: column;
+    
+  }
+  .calendar-section{
+    padding: 10px;
+    
+  }
+}
+
+
+/* TodayTask.js */
+
+
 
