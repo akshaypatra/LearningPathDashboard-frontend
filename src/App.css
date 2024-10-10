@@ -251,7 +251,7 @@ margin: 0px;
    gap:200px;
 }
 
-@media (max-width: 1200px){
+@media (max-width: 1600px){
   .analytics-page-section1{
     display: flex;
     flex-direction: column;
@@ -281,6 +281,7 @@ margin: 0px;
 
 .Today-attendance-pie-chart-container{
   padding-left: 30px;
+  overflow:scroll;
 }
 
 @media (max-width: 1200px){
@@ -319,3 +320,12 @@ margin: 0px;
     overflow: scroll;
   }
 }
+
+/* TeacherProfileComponent.js */
+
+.calendar-section{
+  
+}
+
+/* CalendarEvents.js */
+
