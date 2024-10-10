@@ -61,4 +61,10 @@ Responsive design ensures accessibility across devices, including desktops, tabl
 <img width="1680" alt="Screenshot 2024-10-03 at 21 49 42" src="https://github.com/user-attachments/assets/02aa1ed5-0817-490b-87ea-bf215334d239">
 
 
+### Profile Page for teacher
+
+<img width="1680" alt="Screenshot 2024-10-10 at 20 41 05" src="https://github.com/user-attachments/assets/4f3861d4-96fd-49f5-a79a-2a3a3a9657fd">
+
+
+
 
