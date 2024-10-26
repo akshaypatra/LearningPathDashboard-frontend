@@ -9,6 +9,8 @@ import Alert from './components/Alert';
 import { LearningPathProvider } from './Context/LearningPathContext';
 import ProfilePage from './pages/ProfilePage';
 import AnalyticsPage from './pages/AnalyticsPage';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
 
 function App() {
 
@@ -41,6 +43,8 @@ function App() {
           <Route path='/new-learning-path' element={<AddNewLearningPath showAlert={showAlert} />} /> 
           <Route path='/profile' element={<ProfilePage showAlert={showAlert} />} />  
           <Route path='/analytics' element={<AnalyticsPage showAlert={showAlert} />} /> 
+          <Route path='/login' element={<LoginPage showAlert={showAlert} />} /> 
+          <Route path='/signin' element={<SignupPage showAlert={showAlert} />} /> 
        </Routes>
        </LearningPathProvider> 
        </section>

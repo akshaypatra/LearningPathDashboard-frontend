@@ -5,7 +5,7 @@ margin: 0px;
 
 .react-icons{
   text-align: center;
-  vertical-align:text-top;
+  vertical-align:baseline;
   margin-right: 10px;
 }
 
@@ -71,6 +71,8 @@ margin: 0px;
   color:rgba(238, 237, 237, 0.81) ;
 }
 
+
+
 @media (max-width: 1200px){
   .navbar-header{
 
@@ -79,6 +81,10 @@ margin: 0px;
     margin-bottom: 0px;
   }
 }
+
+/* Signup.js */
+
+
 
 /* Teacher Dasboard .js */
 

@@ -27,6 +27,12 @@ const CalendarEvents = () => {
       end: new Date(2024, 8, 25, 11, 0),
       allDay: true,
     },
+   {
+    title: 'Diwali',
+    start: new Date(2024, 10, 20, 10, 0), // year, month (0-based), day, hour, minute
+      end: new Date(2024, 10, 20, 12, 0),
+      allDay: false,
+   }
   ]);
 
   return (
