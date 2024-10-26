@@ -59,15 +59,7 @@ const SignupPage = () => {
       {role === "Student" && <StudentForm onSubmit={handleFormSubmit} />}
       {role === "Teacher" && <TeacherForm onSubmit={handleFormSubmit} />}
 
-      <Button
-        variant="contained"
-        color="primary"
-        type="submit"
-        sx={{ mt: 3 }}
-        onClick={() => console.log("Submit button clicked")}
-      >
-        Submit
-      </Button>
+      
     </Box>
   );
 };
