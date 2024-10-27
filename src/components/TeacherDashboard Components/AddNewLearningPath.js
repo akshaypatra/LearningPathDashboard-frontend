@@ -1,13 +1,17 @@
 import React, { useState,useContext } from 'react';
 import { TextField, Button, Typography, Paper, Grid2 } from '@mui/material';
 import LearningPathComponent from './LearningPathComponent'; // Import the learning path component
-import { LearningPathContext } from '../Context/LearningPathContext';
+import { LearningPathContext } from '../../Context/LearningPathContext';
 
 export default function AddNewLearningPath(props) {
+  const [className,setClassName]=useState('TY CORE 5');
+  const [classID,setClassID]=useState('TYCORE5');
+  const [subjectName, setSubjectName] = useState("Computer Science");
+  const [subjectCode, setSubjectCode] = useState("21BTCS0016");
   const [unitNumber, setUnitNumber] = useState(1);
   const [generateLearningPath, setGenerateLearningPath] = useState(false);
   const [unitName, setUnitName] = useState("");
-  const [subjectName, setSubjectName] = useState("Computer Science");
+  
   const [topics, setTopics] = useState([{ topicName: "", day: 1 }]);
   const [units, setUnits] = useState([]);
   const [globalDay, setGlobalDay] = useState(1);
@@ -32,7 +36,10 @@ export default function AddNewLearningPath(props) {
   const generatePath = () => {
     const newLearningPath = {
       learningPathId: String(learningPaths.length + 1),  // Assign a unique ID based on the current number of paths
+      classID,
+      className,
       subjectName,
+      subjectCode,
       learningPath: [...units],
     };
 
@@ -66,6 +73,7 @@ export default function AddNewLearningPath(props) {
 
   const finalData = {
     subjectName,
+    className,
     units
   };
 
@@ -75,12 +83,46 @@ export default function AddNewLearningPath(props) {
     <Paper elevation={3} style={{ padding: '20px', maxWidth: '600px', margin: 'auto' }}>
       <Typography variant="h4" gutterBottom>Add New Learning Path</Typography>
       <form onSubmit={handleSubmit}>
+
+
+      <TextField
+          label="Class Name"
+          variant="outlined"
+          fullWidth
+          value={className}
+          onChange={(e) => setClassName(e.target.value)}
+          required
+          margin="normal"
+        />
+
+      <TextField
+          label="Class ID"
+          variant="outlined"
+          fullWidth
+          value={classID}
+          onChange={(e) => setClassID(e.target.value)}
+          required
+          margin="normal"
+        />
+
+
         <TextField
           label="Subject Name"
           variant="outlined"
           fullWidth
           value={subjectName}
           onChange={(e) => setSubjectName(e.target.value)}
+          required
+          margin="normal"
+        />
+
+
+      <TextField
+          label="Subject Code"
+          variant="outlined"
+          fullWidth
+          value={subjectCode}
+          onChange={(e) => setSubjectCode(e.target.value)}
           required
           margin="normal"
         />

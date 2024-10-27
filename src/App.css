@@ -86,15 +86,22 @@ margin: 0px;
 
 
 
-/* Teacher Dasboard .js */
+/* student Dasboard .js */
 
 
-.teacher-dashboard-header{
+.student-dashboard-header{
   font-family: cursive;
   font-size: 40px;
   margin-bottom:20px;
 }
-.LearningPathsSection-teacher{
+
+.student-dashboard-class{
+  color: rgb(115, 186, 247);
+  margin-bottom:20px;
+  text-align: center;
+}
+
+.LearningPathsSection-student{
   border: 1px ;
   border-radius: 20px;
   background-color: rgb(240, 237, 237) ;
@@ -116,9 +123,74 @@ margin: 0px;
   cursor:pointer;
 }
 
-.LearningPathsSection-teacher-header{
+.LearningPathsSection-student-header{
      font-family: cursive;
      font-size: 28px;
+}
+
+
+/* Teacher Dashboard.js */
+
+.teacher-dashboard-header{
+  font-family: cursive;
+  font-size: 40px;
+  margin-bottom:20px;
+}
+
+.teacher-subject-section{
+  border: 3px solid rgb(105, 205, 230);
+  padding-top: 20px;
+  border-radius: 10px;
+  padding-bottom: 20px;
+}
+
+.teacher-subject-header{
+  text-align: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: rgb(114, 115, 115);
+}
+
+.teacher-subject-container{
+  display:grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  list-style: none;
+}
+
+.teacher-subject-item{
+ 
+  
+  display: flex;
+  flex-direction: column;
+}
+
+.teacher-subject-item-link{
+  margin-right: 30px;
+  margin-top: 20px;
+  background-color: rgb(149, 214, 235);
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  text-decoration: none;
+  color: rgb(58, 57, 57);
+}
+
+.teacher-subject-item-link:hover{
+  background-color: rgba(149, 214, 235, 0.78);
+}
+
+.learning-path-create-button{
+  margin-left: 30px;
+}
+
+@media (max-width: 1200px){
+  .teacher-dashboard-header{
+    text-align: center;
+  }
+  .teacher-subject-container{
+    display:flex;
+    flex-direction: column;
+    list-style: none;
+  }
 }
 
 

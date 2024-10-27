@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button, FormControl, InputLabel, MenuItem, Select, Typography } from "@mui/material";
+import { Box, FormControl, InputLabel, MenuItem, Select, Typography } from "@mui/material";
 import StudentForm from "../components/StudentForm";
 import TeacherForm from "../components/TeacherForm";
 

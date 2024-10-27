@@ -1,9 +1,9 @@
 
 import './App.css';
-import TeacherDashboard from './pages/TeacherDashboard';
+import StudentDashboard from './pages/StudentDashboard';
 import NavBar from './components/NavBar';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
-import AddNewLearningPath from './components/AddNewLearningPath';
+import AddNewLearningPath from './components/TeacherDashboard Components/AddNewLearningPath';
 import { useState } from 'react';
 import Alert from './components/Alert';
 import { LearningPathProvider } from './Context/LearningPathContext';
@@ -11,6 +11,8 @@ import ProfilePage from './pages/ProfilePage';
 import AnalyticsPage from './pages/AnalyticsPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
+import TeacherDashboard from './pages/TeacherDashboard';
+import SubjectWiseLearningPath from './components/TeacherDashboard Components/SubjectWiseLearningPath';
 
 function App() {
 
@@ -38,8 +40,9 @@ function App() {
         <Alert alert={alert}/>
         <LearningPathProvider>
         <Routes>
-          
-          <Route path='/'  element={<TeacherDashboard showAlert={showAlert} />}  /> 
+          <Route path='/teacher'  element={<TeacherDashboard showAlert={showAlert} />}  /> 
+          <Route path="/learning-path/:classId/:subjectCode/:subject" element={<SubjectWiseLearningPath />} />
+          <Route path='/student'  element={<StudentDashboard showAlert={showAlert} />}  /> 
           <Route path='/new-learning-path' element={<AddNewLearningPath showAlert={showAlert} />} /> 
           <Route path='/profile' element={<ProfilePage showAlert={showAlert} />} />  
           <Route path='/analytics' element={<AnalyticsPage showAlert={showAlert} />} /> 

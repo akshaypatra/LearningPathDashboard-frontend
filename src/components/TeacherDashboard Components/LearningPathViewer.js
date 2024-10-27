@@ -1,8 +1,10 @@
  // eslint-disable-next-line
 import React, { useContext,useState,useEffect } from 'react';
  // eslint-disable-next-line
-import { LearningPathContext } from '../Context/LearningPathContext';
-import sampleLearningPaths from '../SampleData/sampleLearningPaths';
+import { LearningPathContext } from '../../Context/LearningPathContext';
+
+import sampleLearningPaths from '../../SampleData/sampleLearningPaths';
+
 
 const LearningPathViewer = () => {
 //   const { learningPaths } = useContext(LearningPathContext);

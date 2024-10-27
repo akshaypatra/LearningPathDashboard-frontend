@@ -28,6 +28,9 @@ const LearningPathComponent = ({ learningData }) => {
   return (
     <Container className='learning-path'>
       <Typography variant="h4" gutterBottom >
+        {learningData.className}
+      </Typography>
+      <Typography variant="h4" gutterBottom >
         {learningData.subjectName}
       </Typography>
       <Grid2 container spacing={3}  >
