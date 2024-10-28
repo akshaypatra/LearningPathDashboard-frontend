@@ -40,6 +40,7 @@ export default function AddNewLearningPath(props) {
       className,
       subjectName,
       subjectCode,
+      progress:0,
       learningPath: [...units],
     };
 

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Link,useNavigate } from 'react-router-dom';
 import { FaPlus } from "react-icons/fa6";
 
+
+
 export default function TeacherDashboard() {
 
     const [classSubjects, setClassSubjects] = useState([]);
@@ -23,10 +25,10 @@ export default function TeacherDashboard() {
         const fetchClassesAndSubjects = () => {
         
         const sampleData = [
-            { class: 'TY CORE 5 ',classID:'TYCORE5', subject: 'OS' ,subjectCode:'21BTCS01' },
-            { class: 'TY CORE 4',classID:'TYCORE4', subject: 'OS',subjectCode:'21BTCS01' },
-            { class: 'FY 15',classID:'FY15', subject: 'Engineering Physics',subjectCode:'21BTCS010' },
-            { class: 'SY 9',classID:'SY9', subject: 'Discrete Mathematics',subjectCode:'21BTCS0111' }
+            { class: 'TY CORE 5 ',classID:'TYCORE5', subject: 'OS' ,subjectCode:'21BTCS01',progress:0.7 },
+            { class: 'TY CORE 4',classID:'TYCORE4', subject: 'OS',subjectCode:'21BTCS01',progress:0.9 },
+            { class: 'FY 15',classID:'FY15', subject: 'Engineering Physics',subjectCode:'21BTCS010',progress:0.2 },
+            { class: 'SY 9',classID:'SY9', subject: 'Discrete Mathematics',subjectCode:'21BTCS0111',progress:0.5 }
         ];
 
         // Setting data with a delay to simulate loading
@@ -55,6 +57,7 @@ export default function TeacherDashboard() {
                 <Link className='teacher-subject-item-link' to={`/learning-path/${item.classID}/${item.subjectCode}/${item.subject}`}>
                      <p><strong>Class:</strong> {item.class} </p>
                      <p><strong>Subject:</strong> {item.subject}</p>
+                     <p >   <progress className='teacher-subject-progressbar' value={item.progress} />  {item.progress*100} %</p>
                 </Link>
                 </li>
             ))}
