@@ -13,6 +13,7 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import TeacherDashboard from './pages/TeacherDashboard';
 import SubjectWiseLearningPath from './components/TeacherDashboard Components/SubjectWiseLearningPath';
+import SubjectWiseAnalytics from './components/TeacherDashboard Components/SubjectWiseAnalytics';
 
 function App() {
 
@@ -45,7 +46,8 @@ function App() {
           <Route path='/student'  element={<StudentDashboard showAlert={showAlert} />}  /> 
           <Route path='/new-learning-path' element={<AddNewLearningPath showAlert={showAlert} />} /> 
           <Route path='/profile' element={<ProfilePage showAlert={showAlert} />} />  
-          <Route path='/analytics' element={<AnalyticsPage showAlert={showAlert} />} /> 
+          <Route path='/analytics' element={<AnalyticsPage showAlert={showAlert} />} />
+          <Route path='/analytics/:classId/:subjectCode' element={<SubjectWiseAnalytics showAlert={showAlert} />} /> 
           <Route path='/login' element={<LoginPage showAlert={showAlert} />} /> 
           <Route path='/signin' element={<SignupPage showAlert={showAlert} />} /> 
        </Routes>

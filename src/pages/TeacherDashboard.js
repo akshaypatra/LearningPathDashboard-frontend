@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link,useNavigate } from 'react-router-dom';
 import { FaPlus } from "react-icons/fa6";
-
+import { SiSimpleanalytics } from 'react-icons/si';
 
 
 export default function TeacherDashboard() {
@@ -25,8 +25,8 @@ export default function TeacherDashboard() {
         const fetchClassesAndSubjects = () => {
         
         const sampleData = [
-            { class: 'TY CORE 5 ',classID:'TYCORE5', subject: 'OS' ,subjectCode:'21BTCS01',progress:0.7 },
-            { class: 'TY CORE 4',classID:'TYCORE4', subject: 'OS',subjectCode:'21BTCS01',progress:0.9 },
+            { class: 'TY CORE 5 ',classID:'TYCORE5', subject: 'Operating Systems' ,subjectCode:'21BTCS01',progress:0.7 },
+            { class: 'TY CORE 4',classID:'TYCORE4', subject: 'Operating Systems',subjectCode:'21BTCS01',progress:0.9 },
             { class: 'FY 15',classID:'FY15', subject: 'Engineering Physics',subjectCode:'21BTCS010',progress:0.2 },
             { class: 'SY 9',classID:'SY9', subject: 'Discrete Mathematics',subjectCode:'21BTCS0111',progress:0.5 }
         ];
@@ -69,6 +69,27 @@ export default function TeacherDashboard() {
 
         <button onClick={goToAddLearningPathPage} className='learning-path-create-button'><FaPlus size={18}  className='react-icons' />Add New</button>
         </section>
+
+        <section className='teacher-analysis-section'>
+        <h1 className='teacher-subject-header'><SiSimpleanalytics size={28}  className='react-icons' />Analytics</h1>
+            
+            {classSubjects.length > 0 ? (
+            <ul className='teacher-subject-container' >
+            {classSubjects.map((item, index) => (
+                <li className='teacher-subject-item' key={index}>
+                <Link className='teacher-subject-analysis-item-link' to={`/analytics/${item.classID}/${item.subjectCode}`}>
+                     <p><strong>Class:</strong> {item.class} </p>
+                     <p><strong>Subject:</strong> {item.subject}</p>
+                     
+                </Link>
+                </li>
+            ))}
+            </ul>
+        ) : (
+            <p>No classes or subjects found.</p>
+        )}
+        </section>
+
     </div>
   )
 }

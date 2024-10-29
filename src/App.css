@@ -138,7 +138,8 @@ margin: 0px;
 }
 
 .teacher-subject-section{
-  border: 3px solid rgb(105, 205, 230);
+  
+  background-color: rgb(230, 229, 228);
   padding-top: 20px;
   border-radius: 10px;
   padding-bottom: 20px;
@@ -175,7 +176,7 @@ margin: 0px;
 }
 
 .teacher-subject-item-link:hover{
-  background-color: rgba(149, 214, 235, 0.78);
+  background-color: rgba(177, 223, 239, 0.78);
 }
 
 .learning-path-create-button{
@@ -185,6 +186,32 @@ margin: 0px;
 .teacher-subject-progressbar{
   vertical-align:baseline;
   margin-right: 10px;
+}
+
+
+.teacher-analysis-section{
+  background-color: rgb(224, 223, 223);
+  padding-top: 20px;
+  border-radius: 10px;
+  padding-bottom: 20px;
+  margin-top: 40px;
+  padding-bottom: 50px;
+}
+
+.teacher-subject-analysis-item-link{
+  margin-right: 30px;
+  margin-top: 20px;
+  background-color: #58d5ee;
+  color:white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  text-decoration: none;
+  color: rgb(58, 57, 57);
+}
+
+.teacher-subject-analysis-item-link:hover{
+  background-color: #8fd7e5;
 }
 
 @media (max-width: 1200px){
