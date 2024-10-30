@@ -45,7 +45,7 @@ export default function TeacherDashboard() {
 
   return (
     <div>
-        <h1 className='teacher-dashboard-header' >Teacher Dashboard</h1>
+        <h1 className='teacher-dashboard-header' >Dashboard</h1>
         <section className='teacher-subject-section'>
 
             <h1 className='teacher-subject-header'>Classes</h1>

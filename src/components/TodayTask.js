@@ -43,7 +43,8 @@ export default function TodayTask() {
           height: isMobile ? '15rem' : '20rem', // Adjust height for mobile (15rem), 20rem for larger screens
           overflowY: 'auto', // Enable scrolling
           margin: '20px auto',
-          backgroundColor: '#f9fbe7', 
+          backgroundColor: '#f9fbe7',
+          borderRadius:'20px', 
         }}
       >
         <Typography

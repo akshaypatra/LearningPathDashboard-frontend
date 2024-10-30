@@ -45,8 +45,25 @@ const CalendarEvents = () => {
         endAccessor="end"
         style={{ 
           height: 500,
-          backgroundColor: '#d9f7fc', 
+          backgroundColor: '#fefefe', // Soft white background for a modern look
+          boxShadow: '3px 14px 30px rgba(0, 0, 0, 0.1)', // Softer shadow for depth
+          borderRadius: '15px', // More rounded corners for a modern look
+          padding: '20px', // Ample padding for content spacing
+          border: '1px solid #ddd', // Light grey border for structure
+          fontFamily: 'Arial, sans-serif',
+          color: '#333', // Standard text color
          }}
+
+         eventPropGetter={(event) => ({
+          style: {
+            backgroundColor: event.priority === 'high' ? '#ff6b6b' : '#4ecdc4', // Different colors based on event priority
+            color: '#fff', // White text on colored backgrounds
+            padding: '5px 10px',
+            borderRadius: '5px',
+            border: 'none',
+            fontWeight: 'bold',
+          },
+        })}
       />
     </div>
   );

@@ -40,6 +40,7 @@ const TodayClasses = () => {
         overflowY: 'auto',
         margin: '20px auto',
         backgroundColor: '#f3f4f6', // Light background color
+        borderRadius:'20px',
       }}
     >
       <Typography

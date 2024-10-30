@@ -1,5 +1,9 @@
 
 body{
+  background:linear-gradient(to right, #f6f6f4, rgb(133, 214, 244));
+}
+
+body{
 margin: 0px;
 }
 
@@ -21,7 +25,7 @@ margin: 0px;
 
 .navbar-section{
   border: 0px solid black;
-  background-color: rgb(76, 169, 203);
+  background:linear-gradient(to right,#09b6d8,#77dbf4);
 }
 
 .body-section{
@@ -44,7 +48,7 @@ margin: 0px;
 /* Navbar.js */
 .navbar{
   padding: 1rem;
-  color:  rgb(238, 237, 237);
+  color:  rgb(245, 242, 242);
 }
 
 .navbar-header{
@@ -62,7 +66,7 @@ margin: 0px;
 
 .navbar-link-dashboard{
   font-size: 20px;
-  color:rgb(238, 237, 237) ;
+  color:rgb(249, 248, 248) ;
   text-decoration: none;
   
 }
@@ -139,7 +143,7 @@ margin: 0px;
 
 .teacher-subject-section{
   
-  background-color: rgb(230, 229, 228);
+  background-color: rgba(25, 25, 24, 0.075);
   padding-top: 20px;
   border-radius: 10px;
   padding-bottom: 20px;
@@ -148,7 +152,7 @@ margin: 0px;
 .teacher-subject-header{
   text-align: center;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  color: rgb(114, 115, 115);
+  color: rgb(98, 97, 97);
 }
 
 .teacher-subject-container{
@@ -167,7 +171,9 @@ margin: 0px;
 .teacher-subject-item-link{
   margin-right: 30px;
   margin-top: 20px;
-  background-color: rgb(149, 214, 235);
+  box-shadow: 3px 14px 30px rgba(0, 0, 0, 0.163);
+  background:linear-gradient(to right,#54d8f2, rgb(114, 218, 232),#07b1db);
+
   padding: 20px;
   text-align: center;
   border-radius: 10px;
@@ -176,7 +182,7 @@ margin: 0px;
 }
 
 .teacher-subject-item-link:hover{
-  background-color: rgba(177, 223, 239, 0.78);
+  background:linear-gradient(to right,#09b0da1d, rgba(114, 218, 232, 0.745),#3ac6e2c2);
 }
 
 .learning-path-create-button{
@@ -190,7 +196,8 @@ margin: 0px;
 
 
 .teacher-analysis-section{
-  background-color: rgb(224, 223, 223);
+  background-color: rgba(11, 11, 11, 0.084);
+  
   padding-top: 20px;
   border-radius: 10px;
   padding-bottom: 20px;
@@ -201,8 +208,8 @@ margin: 0px;
 .teacher-subject-analysis-item-link{
   margin-right: 30px;
   margin-top: 20px;
-  background-color: #58d5ee;
-  color:white;
+  box-shadow: 3px 14px 30px rgba(0, 0, 0, 0.163);
+  background:linear-gradient(to right,#54d8f2, rgb(114, 218, 232),#07b1db);  color:white;
   padding: 20px;
   text-align: center;
   border-radius: 10px;
@@ -211,7 +218,7 @@ margin: 0px;
 }
 
 .teacher-subject-analysis-item-link:hover{
-  background-color: #8fd7e5;
+  background:linear-gradient(to right,#09b0da1d, rgba(114, 218, 232, 0.745),#3ac6e2c2);
 }
 
 @media (max-width: 1200px){
@@ -474,11 +481,11 @@ margin: 0px;
 }
 #teacher-name{
   font-family:cursive;
-  color: rgb(70, 172, 230);
+  color: rgb(84, 85, 85);
 }
 
 .calendar-section{
-  border: 4px solid rgb(42, 165, 189);
+  
   padding: 30px;
   border-radius: 20px;
   text-align: center;
@@ -501,7 +508,7 @@ margin: 0px;
 }
 
 
-/* TodayTask.js */
+
 
 
 
