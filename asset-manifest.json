@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/LearningPathDashboard-frontend/static/css/main.19e04f7a.css",
-    "main.js": "/LearningPathDashboard-frontend/static/js/main.c745f18d.js",
+    "main.css": "/LearningPathDashboard-frontend/static/css/main.79ca4f2c.css",
+    "main.js": "/LearningPathDashboard-frontend/static/js/main.0012affb.js",
     "static/js/453.d855a71b.chunk.js": "/LearningPathDashboard-frontend/static/js/453.d855a71b.chunk.js",
     "index.html": "/LearningPathDashboard-frontend/index.html",
-    "main.19e04f7a.css.map": "/LearningPathDashboard-frontend/static/css/main.19e04f7a.css.map",
-    "main.c745f18d.js.map": "/LearningPathDashboard-frontend/static/js/main.c745f18d.js.map",
+    "main.79ca4f2c.css.map": "/LearningPathDashboard-frontend/static/css/main.79ca4f2c.css.map",
+    "main.0012affb.js.map": "/LearningPathDashboard-frontend/static/js/main.0012affb.js.map",
     "453.d855a71b.chunk.js.map": "/LearningPathDashboard-frontend/static/js/453.d855a71b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.19e04f7a.css",
-    "static/js/main.c745f18d.js"
+    "static/css/main.79ca4f2c.css",
+    "static/js/main.0012affb.js"
   ]
 }
