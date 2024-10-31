@@ -75,6 +75,13 @@ margin: 0px;
   color:rgba(238, 237, 237, 0.81) ;
 }
 
+.menu-button {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ffffff;
+}
 
 
 @media (max-width: 1200px){
@@ -83,6 +90,26 @@ margin: 0px;
     font-family: cursive;
     font-size: 30px;
     margin-bottom: 0px;
+  }
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    background-color: #0077b6;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .navbar-links.open {
+    display: flex;
+  }
+
+  .menu-button {
+    display: block;
   }
 }
 
