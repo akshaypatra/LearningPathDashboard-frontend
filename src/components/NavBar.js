@@ -21,7 +21,7 @@ export default function NavBar() {
       </button>
       <div className={`navbar-links ${menuOpen ? 'open' : ''}`}>
 
-        {/* <Link to='/student' className='navbar-link-dashboard'> <GoHome size={24}  className='react-icons' />Dashboard</Link>  */}
+        <Link to='/student' className='navbar-link-dashboard'> <GoHome size={24}  className='react-icons' /> Student Dashboard</Link> 
             {/* <Link to='/analytics' className='navbar-link-dashboard'> <SiSimpleanalytics size={18}  className='react-icons' /> Analytics</Link> */}
         <Link to='/teacher' className='navbar-link-dashboard'> 
           <GoHome size={24} className='react-icons' /> Dashboard

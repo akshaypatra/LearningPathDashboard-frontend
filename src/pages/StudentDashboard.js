@@ -10,9 +10,8 @@ export default function StudentDashboard() {
   return (
     <div>
         <h1 className='student-dashboard-header'>Student Dashboard</h1>
-        
-        <section className='LearningPathsSection-student'>
-            <h2 className='student-dashboard-class' > TY CORE 5</h2>
+            <section className='LearningPathsSection-student'>
+            
             <LearningPathViewer/>
             <br></br>
 

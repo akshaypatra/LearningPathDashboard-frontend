@@ -127,16 +127,50 @@ margin: 0px;
 }
 
 .student-dashboard-class{
-  color: rgb(115, 186, 247);
+  color: rgb(65, 161, 246);
   margin-bottom:20px;
   text-align: center;
+}
+
+.student-dashboard-classCode-form{
+  text-align: center;
+  padding: 40px;
+}
+.classCode-form-header{
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 30px;
 }
 
 .LearningPathsSection-student{
   border: 1px ;
   border-radius: 20px;
-  background-color: rgb(240, 237, 237) ;
+  background-color: rgba(138, 139, 139, 0.188) ;
   padding: 1rem;
+}
+
+.classCode-form-input{
+  border: none;
+  border-radius: 4px ;
+  height: 30px;
+  margin-right: 20px;
+  background-color: #f3f4f4;
+}
+
+.classCode-form-input::placeholder{
+  text-align: center;
+}
+
+.classCode-form-submit{
+  border: none;
+  background-color: #07b1db;
+  height: 30px;
+  border-radius: 4px;
+  color: rgb(45, 44, 44);
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.178);
+}
+
+.classCode-form-submit:hover{
+  background-color: #69c381;
 }
 
 .learning-path-create-button{
@@ -157,6 +191,78 @@ margin: 0px;
 .LearningPathsSection-student-header{
      font-family: cursive;
      font-size: 28px;
+}
+
+/* LearningPathViewer.js */
+
+.learning-path-viewer{
+  display: flex;
+  gap: 3rem;
+  overflow: scroll;
+}
+.learning-path-viewer-path{
+  text-align: center;
+  font-family:fantasy;
+  margin-top: 1rem;
+}
+.learning-path-viewer-subject{
+  text-align: center;
+  font-family:fantasy;
+}
+
+.learning-path-viewer-component-container{
+  border: 4px solid rgb(119, 187, 219);
+  max-height: 80vh;
+  padding: 20px;
+  width: 20rem;
+  border-radius: 20px;
+}
+
+
+@media (max-width: 1200px){
+
+  .LearningPathsSection-teacher{
+    width: 100%;
+  }
+
+  .learning-path-viewer{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    
+    
+  }
+
+  .learning-path-viewer-component-container{
+    width:100%;
+  }
+
+}
+
+.scrollable-topics {
+  max-height: 500px; /* Set a height limit for scrolling */
+  overflow-y: auto; /* Enable vertical scrolling */
+  border: 1px solid #ccc; /* Optional: Add a border */
+  padding: 10px; /* Optional: Add some padding */
+  border-radius: 5px; /* Optional: Rounded corners */
+}
+
+.completed {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: green; /* Green for completed */
+  margin-left: 5px;
+}
+
+.not-completed {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: red; /* Red for not completed */
+  margin-left: 5px;
 }
 
 
@@ -354,52 +460,9 @@ margin: 0px;
 }
 
 
-/* LearningPathViewer.js */
-
-.learning-path-viewer{
-  display: flex;
-  gap: 3rem;
-  overflow: scroll;
-}
-.learning-path-viewer-path{
-  text-align: center;
-  font-family:fantasy;
-  margin-top: 1rem;
-}
-.learning-path-viewer-subject{
-  text-align: center;
-  font-family:fantasy;
-}
-
-.learning-path-viewer-component-container{
-  border: 4px solid rgb(119, 187, 219);
-  max-height: 70vh;
-  overflow: scroll;
-  padding: 20px;
-  width: 20rem;
-  border-radius: 20px;
-}
 
 
-@media (max-width: 1200px){
 
-  .LearningPathsSection-teacher{
-    width: 100%;
-  }
-
-  .learning-path-viewer{
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    overflow: scroll;
-    
-  }
-
-  .learning-path-viewer-component-container{
-    width:100%;
-  }
-
-}
 
 /* analytics page.js*/
 
