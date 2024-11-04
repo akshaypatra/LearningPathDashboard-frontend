@@ -16,14 +16,14 @@ export default function SubjectWiseAnalytics() {
     const [classDetail, setClassDetail] = useState(filteredData? JSON.parse(JSON.stringify(filteredData)) : null);
 
   return (
-    <div className='analytics-page'>
+    <div className='subject-wise-analytics-page'>
 
-        <section className='analytics-page-section1'>
+        <section className='subject-wise-analytics-page-section1'>
           <div>
-            <section className='analytics-page-section1-class-details'>
-              <h3 className='class-name'> {classDetail.className} </h3>
-              <h5 className='subject-name'>Subject : {classDetail.subjectName} </h5>
-              <h5 className='class-strength'>Class strength : {classDetail.classStrength} </h5>
+            <section className='subject-wise-analytics-page-section1-class-details'>
+              <h3 className='subject-wise-class-name'> {classDetail.className} </h3>
+              <h5 className='subject-wise-subject-name'>Subject : {classDetail.subjectName} </h5>
+              <h5 className='subject-wise-class-strength'>Class strength : {classDetail.classStrength} </h5>
               <hr></hr>
 
             </section>
