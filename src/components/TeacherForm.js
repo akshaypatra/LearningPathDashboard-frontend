@@ -1,24 +1,66 @@
 import React, { useState } from "react";
 import { Box, Button, TextField, Typography } from "@mui/material";
+import axios from "axios"; 
 
-const TeacherForm = ({ onSubmit }) => {
+const TeacherForm = ({ showAlert }) => {
   const [formData, setFormData] = useState({
-    role:'teacher',
+    role: 'teacher',
     name: "",
     email: "",
     employeeID: "",
-    password:'',
-
+    password: "",
   });
+
+  // eslint-disable-next-line
+  const [error, setError] = useState(""); // To store any error messages
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit(formData); // Pass data back to the main form handler
+
+    
+    const apiUrl = "http://127.0.0.1:8000/api/teachers/";
+
+    try {
+      // API request to create a new teacher
+      const response = await axios.post(apiUrl, formData,{
+        headers: {
+          'Content-Type': 'application/json', 
+        }
+      });
+
+      if (response.status === 201) {
+        
+        showAlert("Teacher account created successfully!","success");
+        
+      }else{
+        const errorData = await response.json();
+        
+        if (errorData.email) {
+          // Show email error message to user
+          showAlert(errorData.email[0],"danger")
+          // console.log("Email error:", errorData.email[0]);
+        }
+        if (errorData.employeeID) {
+          // Show employeeID error message to user
+          showAlert(errorData.employeeID[0],"danger")
+          //console.log("Employee ID error:", errorData.employeeID[0]);
+      }
+      }
+    } catch (error) {
+      if (error.response) {
+        // If there is an error response from the server, show it
+        showAlert(error.response.data.detail,"danger")
+        //setError(error.response.data.detail || "An error occurred while creating the teacher.");
+      } else {
+        // If there is no response (network error, etc.)
+        showAlert("Network error. Please try again later.","danger");
+      }
+    }
   };
 
   return (
@@ -36,7 +78,13 @@ const TeacherForm = ({ onSubmit }) => {
       <Typography variant="h5" sx={{ textAlign: "center", mb: 2 }}>
         Teacher Signup
       </Typography>
-      
+
+      {error && (
+        <Typography color="error" variant="body2" sx={{ mb: 2 }}>
+          {error}
+        </Typography>
+      )}
+
       <TextField
         label="Name"
         name="name"
@@ -62,15 +110,14 @@ const TeacherForm = ({ onSubmit }) => {
         fullWidth
       />
 
-    <TextField
+      <TextField
         label="Password"
+        type="password"
         name="password"
         value={formData.password}
         onChange={handleChange}
         fullWidth
       />
-
-      
 
       <Button
         variant="contained"

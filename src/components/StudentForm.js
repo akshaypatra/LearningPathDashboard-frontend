@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import { Box, Button, TextField, Typography } from "@mui/material";
+import axios from "axios";
 
-const StudentForm = ({ onSubmit }) => {
+
+const StudentForm = ({ showAlert }) => {
+
+  // eslint-disable-next-line
+  const [error, setError] = useState(""); // To store any error messages
+
+
   const [formData, setFormData] = useState({
     role:'student',
     name: "",
@@ -16,9 +23,48 @@ const StudentForm = ({ onSubmit }) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit(formData); // Pass data back to the main form handler
+
+    
+    const apiUrl = "http://127.0.0.1:8000/api/students/";
+
+    try {
+      // API request to create a new teacher
+      const response = await axios.post(apiUrl, formData,{
+        headers: {
+          'Content-Type': 'application/json', 
+        }
+      });
+
+      if (response.status === 201) {
+        
+        showAlert("Account created successfully!","success");
+        
+      }else{
+        const errorData = await response.json();
+        
+        if (errorData.email) {
+          // Show email error message to user
+          showAlert(errorData.email[0],"danger")
+          // console.log("Email error:", errorData.email[0]);
+        }
+        if (errorData.employeeID) {
+          // Show employeeID error message to user
+          showAlert(errorData.employeeID[0],"danger")
+          //console.log("Employee ID error:", errorData.employeeID[0]);
+      }
+      }
+    } catch (error) {
+      if (error.response) {
+        // If there is an error response from the server, show it
+        showAlert(error.response.data.detail,"danger")
+        //setError(error.response.data.detail || "An error occurred while creating the teacher.");
+      } else {
+        // If there is no response (network error, etc.)
+        showAlert("Network error. Please try again later.","danger");
+      }
+    }
   };
 
   return (
