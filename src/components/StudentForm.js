@@ -2,20 +2,14 @@ import React, { useState } from "react";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import axios from "axios";
 
-
 const StudentForm = ({ showAlert }) => {
-
-  // eslint-disable-next-line
-  const [error, setError] = useState(""); // To store any error messages
-
-
   const [formData, setFormData] = useState({
-    role:'student',
+    role: 'student',
     name: "",
     email: "",
     enrollmentNumber: "",
     department: "",
-    password:'',
+    password: '',
   });
 
   const handleChange = (e) => {
@@ -26,43 +20,36 @@ const StudentForm = ({ showAlert }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    
     const apiUrl = "http://127.0.0.1:8000/api/students/";
 
     try {
-      // API request to create a new teacher
-      const response = await axios.post(apiUrl, formData,{
+      // API request to create a new student
+      const response = await axios.post(apiUrl, formData, {
         headers: {
-          'Content-Type': 'application/json', 
-        }
+          'Content-Type': 'application/json',
+        },
       });
 
       if (response.status === 201) {
-        
-        showAlert("Account created successfully!","success");
-        
-      }else{
-        const errorData = await response.json();
-        
-        if (errorData.email) {
-          // Show email error message to user
-          showAlert(errorData.email[0],"danger")
-          // console.log("Email error:", errorData.email[0]);
-        }
-        if (errorData.employeeID) {
-          // Show employeeID error message to user
-          showAlert(errorData.employeeID[0],"danger")
-          //console.log("Employee ID error:", errorData.employeeID[0]);
-      }
+        showAlert("Account created successfully!", "success");
       }
     } catch (error) {
       if (error.response) {
-        // If there is an error response from the server, show it
-        showAlert(error.response.data.detail,"danger")
-        //setError(error.response.data.detail || "An error occurred while creating the teacher.");
+        const errorData = error.response.data;
+
+        // Handle field-specific errors
+        if (errorData.email) {
+          showAlert(errorData.email[0], "danger");
+        }
+        if (errorData.enrollmentNumber) {
+          showAlert(errorData.enrollmentNumber[0], "danger");
+        }
+        if (!errorData.email && !errorData.enrollmentNumber) {
+          showAlert(errorData.detail || "An error occurred while creating the student.", "danger");
+        }
       } else {
-        // If there is no response (network error, etc.)
-        showAlert("Network error. Please try again later.","danger");
+        // Network error
+        showAlert("Network error. Please try again later.", "danger");
       }
     }
   };
@@ -82,7 +69,7 @@ const StudentForm = ({ showAlert }) => {
       <Typography variant="h5" sx={{ textAlign: "center", mb: 2 }}>
         Student Signup
       </Typography>
-      
+
       <TextField
         label="Name"
         name="name"
@@ -116,13 +103,13 @@ const StudentForm = ({ showAlert }) => {
         fullWidth
       />
 
-    <TextField
+      <TextField
         label="Password"
         name="password"
         value={formData.password}
         onChange={handleChange}
         fullWidth
-      />    
+      />
 
       <Button
         variant="contained"

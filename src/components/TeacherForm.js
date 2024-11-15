@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, Button, TextField, Typography } from "@mui/material";
-import axios from "axios"; 
+import axios from "axios";
 
 const TeacherForm = ({ showAlert }) => {
   const [formData, setFormData] = useState({
@@ -22,43 +22,38 @@ const TeacherForm = ({ showAlert }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    
     const apiUrl = "http://127.0.0.1:8000/api/teachers/";
 
     try {
       // API request to create a new teacher
-      const response = await axios.post(apiUrl, formData,{
+      const response = await axios.post(apiUrl, formData, {
         headers: {
-          'Content-Type': 'application/json', 
+          'Content-Type': 'application/json',
         }
       });
 
       if (response.status === 201) {
-        
-        showAlert("Teacher account created successfully!","success");
-        
-      }else{
-        const errorData = await response.json();
-        
-        if (errorData.email) {
-          // Show email error message to user
-          showAlert(errorData.email[0],"danger")
-          // console.log("Email error:", errorData.email[0]);
-        }
-        if (errorData.employeeID) {
-          // Show employeeID error message to user
-          showAlert(errorData.employeeID[0],"danger")
-          //console.log("Employee ID error:", errorData.employeeID[0]);
-      }
+        showAlert("Teacher account created successfully!", "success");
       }
     } catch (error) {
       if (error.response) {
-        // If there is an error response from the server, show it
-        showAlert(error.response.data.detail,"danger")
-        //setError(error.response.data.detail || "An error occurred while creating the teacher.");
+        const errorData = error.response.data;
+
+        // Handle specific error fields from the API response
+        if (errorData.email) {
+          showAlert(errorData.email[0], "danger"); // Show email error message
+        }
+        if (errorData.employeeID) {
+          showAlert(errorData.employeeID[0], "danger"); // Show employee ID error message
+        }
+
+        // General error message (if present)
+        if (!errorData.email && !errorData.employeeID) {
+          showAlert(errorData.detail || "An error occurred while creating the teacher.", "danger");
+        }
       } else {
-        // If there is no response (network error, etc.)
-        showAlert("Network error. Please try again later.","danger");
+        // If there's no response (e.g., network error)
+        showAlert("Network error. Please try again later.", "danger");
       }
     }
   };
@@ -79,12 +74,14 @@ const TeacherForm = ({ showAlert }) => {
         Teacher Signup
       </Typography>
 
+      {/* Error Message */}
       {error && (
         <Typography color="error" variant="body2" sx={{ mb: 2 }}>
           {error}
         </Typography>
       )}
 
+      {/* Form Fields */}
       <TextField
         label="Name"
         name="name"
