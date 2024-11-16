@@ -83,6 +83,16 @@ margin: 0px;
   color: #ffffff;
 }
 
+.navbar-logout-button{
+  background-color: #78cee3be;
+  border-radius: 10px;
+  border: 1px ;
+  color: white;
+  width:7rem;
+}
+.navbar-logout-button:hover{
+  background-color:#4ec4e2be ;
+}
 
 @media (max-width: 1200px){
   .navbar-header{

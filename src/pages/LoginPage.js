@@ -1,22 +1,59 @@
 import React, { useState } from "react";
 import { Box, TextField, Typography, Button } from "@mui/material";
+import axios from "axios"; // Import axios
+import { useNavigate } from "react-router-dom"; 
 
-const LoginPage = () => {
+
+const LoginPage = ({showAlert}) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const [error, setError] = useState(""); // To store error messages
+  const [loading, setLoading] = useState(false); // To handle loading state
+  const navigate = useNavigate();
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Login Data:", formData);
-    // You would send formData to the backend here.
-    // Example: fetch("/api/login", { method: "POST", body: JSON.stringify(formData) });
+
+    setLoading(true); // Set loading state to true
+    setError(""); // Reset error state
+
+    try {
+      // Send POST request to backend
+      const response = await axios.post("http://127.0.0.1:8000/api/login/", formData,{
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+
+      if (response.status === 201) {
+        showAlert("Login Successful!", "success");
+        console.log("Showing alert:", "Login Successful!");
+        navigate("/profile");
+      }
+
+      localStorage.setItem("token", response.data.token); // Store the token in localStorage
+      localStorage.setItem("role", response.data.role); // Optionally, store the role
+
+      // Redirect the user after successful login 
+      navigate("/profile");
+      window.location.reload();
+
+    } catch (error) {
+
+      
+      //console.error("Login Error:", error.response ? error.response.data : error.message);
+      showAlert("Enter valid email or password","danger")
+    } finally {
+      setLoading(false); // Set loading state to false after request
+    }
   };
 
   return (
@@ -38,7 +75,10 @@ const LoginPage = () => {
       <Typography variant="h5" sx={{ textAlign: "center" }}>
         Login
       </Typography>
-      
+
+      {/* Show error message if there is an error */}
+      {error && <Typography color="error" sx={{ textAlign: "center" }}>{error}</Typography>}
+
       <TextField
         label="Email"
         type="email"
@@ -65,8 +105,9 @@ const LoginPage = () => {
         type="submit"
         sx={{ mt: 2 }}
         fullWidth
+        disabled={loading} // Disable button while loading
       >
-        Login
+        {loading ? "Logging in..." : "Login"}
       </Button>
     </Box>
   );

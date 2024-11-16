@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const TeacherForm = ({ showAlert }) => {
+
+const TeacherForm = ({ showAlert, history }) => {
   const [formData, setFormData] = useState({
     role: 'teacher',
     name: "",
@@ -13,7 +15,7 @@ const TeacherForm = ({ showAlert }) => {
 
   // eslint-disable-next-line
   const [error, setError] = useState(""); // To store any error messages
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -34,6 +36,26 @@ const TeacherForm = ({ showAlert }) => {
 
       if (response.status === 201) {
         showAlert("Teacher account created successfully!", "success");
+
+        // After signup, log in the user automatically using email and password
+        const loginResponse = await axios.post("http://127.0.0.1:8000/api/login/", {
+          email: formData.email,
+          password: formData.password
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        });
+
+        if (loginResponse.status === 200) {
+          const { token } = loginResponse.data;
+
+          // Store the token in localStorage (or any other storage you prefer)
+          localStorage.setItem("token", token);
+
+          navigate("/profile");
+          window.location.reload();
+        }
       }
     } catch (error) {
       if (error.response) {
@@ -49,7 +71,7 @@ const TeacherForm = ({ showAlert }) => {
 
         // General error message (if present)
         if (!errorData.email && !errorData.employeeID) {
-          showAlert(errorData.detail || "An error occurred while creating the teacher.", "danger");
+          showAlert(errorData.detail || "An error occurred while creating the teacher's account.", "danger");
         }
       } else {
         // If there's no response (e.g., network error)
