@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Box, TextField, Typography, Button } from "@mui/material";
-import axios from "axios"; // Import axios
+import axios from "axios"; 
 import { useNavigate } from "react-router-dom"; 
 
-
-const LoginPage = ({showAlert}) => {
+const LoginPage = ({ showAlert }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -12,7 +11,6 @@ const LoginPage = ({showAlert}) => {
   const [error, setError] = useState(""); // To store error messages
   const [loading, setLoading] = useState(false); // To handle loading state
   const navigate = useNavigate();
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,32 +25,31 @@ const LoginPage = ({showAlert}) => {
 
     try {
       // Send POST request to backend
-      const response = await axios.post("http://127.0.0.1:8000/api/login/", formData,{
+      const response = await axios.post("http://127.0.0.1:8000/api/login/", formData, {
         headers: {
-          'Content-Type': 'application/json',
-        }
+          "Content-Type": "application/json",
+        },
       });
 
-      if (response.status === 201) {
-        showAlert("Login Successful!", "success");
-        console.log("Showing alert:", "Login Successful!");
-        navigate("/profile");
-      }
-
-      localStorage.setItem("token", response.data.token); // Store the token in localStorage
-      localStorage.setItem("role", response.data.role); // Optionally, store the role
-
-      // Redirect the user after successful login 
-      navigate("/profile");
-      window.location.reload();
-
-    } catch (error) {
+      // Store token and role in localStorage
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("role", response.data.role);
 
       
-      //console.error("Login Error:", error.response ? error.response.data : error.message);
-      showAlert("Enter valid email or password","danger")
+
+      showAlert("Login Successful!", "success"); // Show success alert
+
+      // Redirect to profile page after successful login
+      navigate("/profile");
+      window.location.reload()
+    } catch (err) {
+      // Handle errors and set error messages
+      const errorMessage =
+        err.response?.data?.detail || "Invalid email or password. Please try again.";
+      setError(errorMessage);
+      showAlert(errorMessage, "danger");
     } finally {
-      setLoading(false); // Set loading state to false after request
+      setLoading(false); // Reset loading state
     }
   };
 
@@ -76,8 +73,12 @@ const LoginPage = ({showAlert}) => {
         Login
       </Typography>
 
-      {/* Show error message if there is an error */}
-      {error && <Typography color="error" sx={{ textAlign: "center" }}>{error}</Typography>}
+      {/* Display error message if any */}
+      {error && (
+        <Typography color="error" sx={{ textAlign: "center" }}>
+          {error}
+        </Typography>
+      )}
 
       <TextField
         label="Email"
@@ -87,6 +88,7 @@ const LoginPage = ({showAlert}) => {
         onChange={handleChange}
         fullWidth
         required
+        disabled={loading} // Disable field while loading
       />
 
       <TextField
@@ -97,6 +99,7 @@ const LoginPage = ({showAlert}) => {
         onChange={handleChange}
         fullWidth
         required
+        disabled={loading} // Disable field while loading
       />
 
       <Button
