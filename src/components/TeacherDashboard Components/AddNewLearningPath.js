@@ -3,6 +3,8 @@ import { TextField, Button, Typography, Paper, Grid2 } from '@mui/material';
 import LearningPathComponent from './LearningPathComponent'; // Import the learning path component
 import { LearningPathContext } from '../../Context/LearningPathContext';
 
+
+
 export default function AddNewLearningPath(props) {
   const [className,setClassName]=useState('TY CORE 5');
   const [classID,setClassID]=useState('TYCORE5');
@@ -12,7 +14,7 @@ export default function AddNewLearningPath(props) {
   const [generateLearningPath, setGenerateLearningPath] = useState(false);
   const [unitName, setUnitName] = useState("");
   
-  const [topics, setTopics] = useState([{ topicName: "", day: 1 }]);
+  const [topics, setTopics] = useState([{ topicName: "", day: 1, completed: false }]);
   const [units, setUnits] = useState([]);
   const [globalDay, setGlobalDay] = useState(1);
 
@@ -28,12 +30,12 @@ export default function AddNewLearningPath(props) {
     setUnits([...units, newUnit]);
     setUnitNumber(unitNumber + 1);
     setUnitName("");
-    setTopics([{ topicName: "", day: globalDay + 1 }]);
+    setTopics([{ topicName: "", day: globalDay + 1,completed:false }]);
     setGlobalDay(globalDay + 1);
   };
 
 
-  const generatePath = () => {
+  const generatePath = async () => {
     const newLearningPath = {
       learningPathId: String(learningPaths.length + 1),  // Assign a unique ID based on the current number of paths
       classID,
@@ -43,6 +45,31 @@ export default function AddNewLearningPath(props) {
       progress:0,
       learningPath: [...units],
     };
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/learning-paths/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newLearningPath),
+      });
+  
+      if (response.ok) {
+        const result = await response.json();
+        // Update global state with the response from the server
+        setLearningPaths([...learningPaths, result]);
+        setGenerateLearningPath(true);
+        props.showAlert("Learning path  posted successfully!", "success");
+      } else {
+        const errorData = await response.json();
+        console.error("Error:", errorData);
+        props.showAlert("Failed to post learning path. Please try again.", "error");
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+      props.showAlert("An error occurred while posting the learning path.", "error");
+    }
 
     // Update the global state by adding the new learning path to the array
     setLearningPaths([...learningPaths, newLearningPath]);
@@ -59,7 +86,7 @@ export default function AddNewLearningPath(props) {
 
   const addTopic = () => {
     const nextDay = globalDay + 1;
-    setTopics([...topics, { topicName: "", day: nextDay }]);
+    setTopics([...topics, { topicName: "", day: nextDay,completed: false }]);
     setGlobalDay(nextDay);
   };
 
