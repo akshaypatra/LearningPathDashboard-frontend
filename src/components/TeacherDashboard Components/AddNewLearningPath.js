@@ -1,4 +1,4 @@
-import React, { useState,useContext } from 'react';
+import React, { useState,useContext,useEffect } from 'react';
 import { TextField, Button, Typography, Paper, Grid2 } from '@mui/material';
 import LearningPathComponent from './LearningPathComponent'; // Import the learning path component
 import { LearningPathContext } from '../../Context/LearningPathContext';
@@ -17,8 +17,16 @@ export default function AddNewLearningPath(props) {
   const [topics, setTopics] = useState([{ topicName: "", day: 1, completed: false }]);
   const [units, setUnits] = useState([]);
   const [globalDay, setGlobalDay] = useState(1);
-
+  const [employeeID, setEmployeeID] = useState("");
   const { learningPaths, setLearningPaths } = useContext(LearningPathContext);
+
+  // Fetch employee ID from localStorage when the component mounts
+  useEffect(() => {
+    const storedEmployeeID = localStorage.getItem('employeeID');
+    if (storedEmployeeID) {
+      setEmployeeID(storedEmployeeID); // Set the employee ID if it exists
+    }
+  }, []);
   
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -43,6 +51,7 @@ export default function AddNewLearningPath(props) {
       subjectName,
       subjectCode,
       progress:0,
+      employeeID,
       learningPath: [...units],
     };
 
@@ -102,7 +111,8 @@ export default function AddNewLearningPath(props) {
   const finalData = {
     subjectName,
     className,
-    units
+    units,
+    employeeID,
   };
 
   return (

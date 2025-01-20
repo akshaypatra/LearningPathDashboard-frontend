@@ -52,7 +52,9 @@ const TeacherForm = ({ showAlert, history }) => {
 
           // Store the token in localStorage (or any other storage you prefer)
           localStorage.setItem("token", token);
+          localStorage.setItem("employeeID", formData.employeeID);
 
+          
           navigate("/profile");
           window.location.reload();
         }
