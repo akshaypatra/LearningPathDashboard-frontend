@@ -1,20 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import NewSampleDataForLearningPath from '../../SampleData/NewSampleDataForLearningPath';
+// import NewSampleDataForLearningPath from '../../SampleData/NewSampleDataForLearningPath';
 import { Typography, Card, CardContent, List, ListItem, ListItemText, Chip, Box, LinearProgress, Button } from '@mui/material';
 import { green, red } from '@mui/material/colors';
+import axios from 'axios';
 
 export default function SubjectWiseLearningPath() {
-    // eslint-disable-next-line
-    const { classId, subjectCode, subject } = useParams();
+    const { classId, subjectCode, subject } = useParams(); // Get parameters from URL
 
-    // Filter the learning path data based on classId and subjectCode
-    const filteredData = NewSampleDataForLearningPath.find(
-        (path) => path.classID === classId && path.subjectCode === subjectCode
-    );
+    const [learningPathData, setLearningPathData] = useState(null); // State to hold the learning path data
+    const [loading, setLoading] = useState(true); // Loading state
+    const [error, setError] = useState(null); // Error state
 
-    // Initialize state with filtered data
-    const [learningPathData, setLearningPathData] = useState(filteredData ? JSON.parse(JSON.stringify(filteredData)) : null);
+    // Fetch the learning path data from the API
+    useEffect(() => {
+        const fetchLearningPathData = async () => {
+            try {
+                const response = await axios.get('http://127.0.0.1:8000/api/learning-paths/');
+                const filteredData = response.data.filter(
+                    (path) => path.classID === classId && path.subjectCode === subjectCode 
+                );
+                setLearningPathData(filteredData[0] || null); // Set the first matching learning path
+            } catch (err) {
+                setError('Failed to fetch learning paths');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchLearningPathData();
+    }, [classId, subjectCode, subject]); // Re-run the effect if any of these change
 
     const calculateCompletionPercentage = (topics) => {
         const completedTopics = topics.filter((topic) => topic.completed).length;
@@ -38,6 +53,14 @@ export default function SubjectWiseLearningPath() {
     };
 
     const overallCompletionPercentage = calculateOverallCompletion();
+
+    if (loading) {
+        return <Typography variant="h6">Loading...</Typography>;
+    }
+
+    if (error) {
+        return <Typography variant="h6" color="error">{error}</Typography>;
+    }
 
     return (
         <Box sx={{ padding: 2 }}>

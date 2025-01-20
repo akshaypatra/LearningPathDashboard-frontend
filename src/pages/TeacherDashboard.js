@@ -13,12 +13,9 @@ export default function TeacherDashboard() {
             navigate("/new-learning-path");
         }
 
-    
-
-
     const [sampleData, setSampleData] = useState([]); // State to store the filtered data
-  const [loading, setLoading] = useState(true); // To handle loading state
-  const [error, setError] = useState(null); // To handle errors
+    const [loading, setLoading] = useState(true); // To handle loading state
+    const [error, setError] = useState(null); // To handle errors
 
   useEffect(() => {
     // Fetch the data when the component mounts
