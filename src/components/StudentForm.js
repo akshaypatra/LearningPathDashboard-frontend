@@ -50,6 +50,7 @@ const StudentForm = ({ showAlert }) => {
 
           // Store the token in localStorage (or any other storage you prefer)
           localStorage.setItem("token", token);
+          localStorage.setItem("role", formData.role);
 
           navigate("/profile");
           window.location.reload();
