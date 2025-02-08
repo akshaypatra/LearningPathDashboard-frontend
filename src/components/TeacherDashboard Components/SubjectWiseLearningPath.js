@@ -37,8 +37,25 @@ export default function SubjectWiseLearningPath() {
     };
 
     // Function to mark topic as completed
-    const markAsCompleted = (unitIndex, topicIndex) => {
+    const markAsCompleted = async (unitIndex, topicIndex) => {
+
+        if (!learningPathData) return;
+
         const updatedLearningPath = { ...learningPathData };
+        const topic = updatedLearningPath.learningPath[unitIndex].topics[topicIndex];
+
+        topic.completed = !topic.completed;
+        try {
+            // Send update request to backend
+            await axios.put(`http://127.0.0.1:8000/api/learning-paths/${learningPathData._id}/`, {
+                learningPath: updatedLearningPath.learningPath
+            });
+    
+            // Update local state
+            setLearningPathData(updatedLearningPath);
+        } catch (error) {
+            console.error("Error updating topic completion:", error);
+        }
         updatedLearningPath.learningPath[unitIndex].topics[topicIndex].completed = true;
         setLearningPathData(updatedLearningPath);
     };
