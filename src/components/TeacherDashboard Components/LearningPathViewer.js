@@ -1,18 +1,38 @@
 // eslint-disable-next-line
 import React, { useState, useEffect } from 'react';
 import { LinearProgress, Box, Typography } from '@mui/material';
-// eslint-disable-next-line
-import NewSampleDataForLearningPath from '../../SampleData/NewSampleDataForLearningPath';
+
+
 
 const LearningPathViewer = () => {
   const [learningPaths, setLearningPaths] = useState([]);
   const [filteredPaths, setFilteredPaths] = useState([]);
   const [classCode, setClassCode] = useState('');
   const [submittedCode, setSubmittedCode] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Simulate fetching learning paths data
-    setLearningPaths(NewSampleDataForLearningPath);
+    // Fetch learning paths from API
+    const fetchLearningPaths = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const response = await fetch('http://127.0.0.1:8000/api/learning-paths/');
+        if (!response.ok) {
+          throw new Error('Failed to fetch learning paths');
+        }
+        const data = await response.json();
+        setLearningPaths(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLearningPaths();
   }, []);
 
   useEffect(() => {
@@ -33,6 +53,14 @@ const LearningPathViewer = () => {
     e.preventDefault();
     setSubmittedCode(classCode); // Set submitted code for filtering
   };
+
+  if (loading) {
+    return <p>Loading learning paths...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   if (!filteredPaths.length && !submittedCode) {
     return (
