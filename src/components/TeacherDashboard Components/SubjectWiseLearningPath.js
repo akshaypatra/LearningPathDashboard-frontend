@@ -45,8 +45,9 @@ export default function SubjectWiseLearningPath() {
         const topic = updatedLearningPath.learningPath[unitIndex].topics[topicIndex];
 
         topic.completed = !topic.completed;
+
         try {
-            // Send update request to backend
+            
             await axios.put(`http://127.0.0.1:8000/api/learning-paths/${learningPathData._id}/`, {
                 learningPath: updatedLearningPath.learningPath
             });
@@ -56,8 +57,13 @@ export default function SubjectWiseLearningPath() {
         } catch (error) {
             console.error("Error updating topic completion:", error);
         }
+        if (!topic.completed) {
+            window.location.reload(); 
+        }
+        
         updatedLearningPath.learningPath[unitIndex].topics[topicIndex].completed = true;
         setLearningPathData(updatedLearningPath);
+        
     };
 
     // Calculate overall completion percentage
@@ -117,29 +123,27 @@ export default function SubjectWiseLearningPath() {
                                     <List>
                                         {unit.topics.map((topic, topicIndex) => (
                                             <ListItem key={topic.day} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                                <ListItemText
-                                                    primary={`Day ${topic.day} - ${topic.topicName}`}
+                                            <ListItemText
+                                                primary={`Day ${topic.day} - ${topic.topicName}`}
+                                            />
+                                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                                <Chip
+                                                    label={topic.completed ? 'Completed' : 'Not Completed'}
+                                                    sx={{
+                                                        backgroundColor: topic.completed ? green[500] : red[500],
+                                                        color: 'white',
+                                                        marginRight: 1,
+                                                    }}
                                                 />
-                                                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                                    <Chip
-                                                        label={topic.completed ? 'Completed' : 'Not Completed'}
-                                                        sx={{
-                                                            backgroundColor: topic.completed ? green[500] : red[500],
-                                                            color: 'white',
-                                                            marginRight: 1,
-                                                        }}
-                                                    />
-                                                    {!topic.completed && (
-                                                        <Button
-                                                            variant="contained"
-                                                            color="primary"
-                                                            onClick={() => markAsCompleted(unitIndex, topicIndex)}
-                                                        >
-                                                            Complete
-                                                        </Button>
-                                                    )}
-                                                </Box>
-                                            </ListItem>
+                                                <Button
+                                                    variant="contained"
+                                                    color={topic.completed ? 'secondary' : 'primary'}
+                                                    onClick={() => markAsCompleted(unitIndex, topicIndex)}
+                                                >
+                                                    {topic.completed ? 'Undo' : 'Complete'}
+                                                </Button>
+                                            </Box>
+                                        </ListItem>
                                         ))}
                                     </List>
                                 </CardContent>
