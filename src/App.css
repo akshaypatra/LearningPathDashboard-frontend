@@ -156,6 +156,8 @@ margin: 0px;
   border-radius: 20px;
   background-color: rgba(138, 139, 139, 0.188) ;
   padding: 1rem;
+  padding-bottom:0rem;
+ 
 }
 
 .classCode-form-input{
@@ -228,6 +230,20 @@ margin: 0px;
   border-radius: 20px;
 }
 
+.learning-path-viewer-exit-button-div{
+  margin-top: 20px;
+  text-align: center;
+}
+.exit-class-button{
+  background-color: #07b1db;
+  border: 0px solid black;
+  border-radius: 4px;
+  padding: 5px;
+  
+}
+.exit-class-button:hover{
+  background-color:#1cc7f2a5 ;
+}
 
 @media (max-width: 1200px){
 

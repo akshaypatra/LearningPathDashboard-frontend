@@ -2,7 +2,7 @@ import React from 'react'
 
 import LearningPathViewer from '../components/TeacherDashboard Components/LearningPathViewer';
 
-export default function StudentDashboard() {
+export default function StudentDashboard({ showAlert }) {
 
 
   
@@ -12,7 +12,7 @@ export default function StudentDashboard() {
         <h1 className='student-dashboard-header'>Student Dashboard</h1>
             <section className='LearningPathsSection-student'>
             
-            <LearningPathViewer/>
+            <LearningPathViewer showAlert={showAlert}/>
             <br></br>
 
       

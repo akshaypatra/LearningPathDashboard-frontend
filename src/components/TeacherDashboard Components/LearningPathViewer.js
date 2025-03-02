@@ -4,13 +4,21 @@ import { LinearProgress, Box, Typography } from '@mui/material';
 
 
 
-const LearningPathViewer = () => {
+const LearningPathViewer = ({ showAlert }) => {
   const [learningPaths, setLearningPaths] = useState([]);
   const [filteredPaths, setFilteredPaths] = useState([]);
   const [classCode, setClassCode] = useState('');
   const [submittedCode, setSubmittedCode] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const storedClassCode = localStorage.getItem('classID');
+    if (storedClassCode && storedClassCode!=="null") {
+       setSubmittedCode(storedClassCode);
+    }
+  }, []);
+
 
   useEffect(() => {
     // Fetch learning paths from API
@@ -35,6 +43,7 @@ const LearningPathViewer = () => {
     fetchLearningPaths();
   }, []);
 
+
   useEffect(() => {
     // Filter learning paths based on submitted class code
     if (submittedCode) {
@@ -49,10 +58,82 @@ const LearningPathViewer = () => {
     setClassCode(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const storedAuthToken = localStorage.getItem('token');
+    if (!storedAuthToken) {
+      console.error('No auth token found. Please log in.');
+      return;
+    }
+
+    localStorage.setItem('classID', classCode);
     setSubmittedCode(classCode); // Set submitted code for filtering
+
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/update_class_id/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${storedAuthToken}`, // Send token in Authorization header
+        },
+        body: JSON.stringify({ classID: classCode }),
+      });
+  
+      if (!response.ok) {
+        showAlert("Failed to update class ID", "danger");
+        throw new Error('Failed to update class ID');
+      }
+  
+ 
+      // console.log('Class ID updated successfully:', data);
+      showAlert(`Class ID updated successfully `, "success");
+  
+    } catch (error) {
+      // console.error('Error updating class ID:', error.message);
+      showAlert(`Error updating class ID:${error.message}`, "danger");
+    }
   };
+
+
+  const exitClass = async () => {
+    localStorage.removeItem('classID'); 
+    setSubmittedCode(null);
+
+    const storedAuthToken = localStorage.getItem('token');
+    if (!storedAuthToken) {
+      console.error('No auth token found. Please log in.');
+      return;
+    }
+    
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/update_class_id/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${storedAuthToken}`, // Send token in Authorization header
+        },
+        body: JSON.stringify({ classID:null }),
+      });
+      const data = await response.json(); // Parse response JSON
+      console.log("Server Response:", data); // Debug API response
+  
+      if (!response.ok) {
+        showAlert("Failed to update class ID", "danger");
+        throw new Error('Failed to update class ID');
+      }
+  
+    
+      // console.log('Class ID updated successfully:', data);
+      showAlert(`Class ID updated successfully `, "success");
+  
+    } catch (error) {
+      // console.error('Error updating class ID:', error.message);
+      showAlert(`Error updating class ID:${error.message}`, "danger");
+    }
+   
+  };
+  
 
   if (loading) {
     return <p>Loading learning paths...</p>;
@@ -62,7 +143,7 @@ const LearningPathViewer = () => {
     return <p>Error: {error}</p>;
   }
 
-  if (!filteredPaths.length && !submittedCode) {
+  if (!filteredPaths.length && !submittedCode ) {
     return (
       <form className='student-dashboard-classCode-form' onSubmit={handleSubmit}>
         <p className='classCode-form-header'>Enter Class Code</p>
@@ -83,7 +164,9 @@ const LearningPathViewer = () => {
 
   return (
     <>
+     
       <h2 className='student-dashboard-class'>{filteredPaths[0].className}</h2>
+
       <div className='learning-path-viewer'>
         {filteredPaths.map((path, index) => {
           // Calculate completion metrics
@@ -128,6 +211,13 @@ const LearningPathViewer = () => {
             </div>
           );
         })}
+      </div>
+      <div className='learning-path-viewer-exit-button-div'>
+      {filteredPaths.length > 0 && (
+            <button className="exit-class-button" onClick={exitClass}>
+              Exit Class
+            </button>
+        )}
       </div>
     </>
   );

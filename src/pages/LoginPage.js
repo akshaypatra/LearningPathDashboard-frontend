@@ -32,9 +32,10 @@ const LoginPage = ({ showAlert }) => {
       });
 
       // Store token and role in localStorage
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("token", response.data.access_token);
       localStorage.setItem("role", response.data.role);
       localStorage.setItem("employeeID", response.data.employeeID);
+      localStorage.setItem("classID", response.data.classID);
       
 
       

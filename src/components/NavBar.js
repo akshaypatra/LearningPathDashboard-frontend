@@ -28,6 +28,9 @@ export default function NavBar() {
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('classID');
+    localStorage.removeItem('employeeID')
     setToken(null); // Remove the token from state
     setRole(null); // Remove the role from state
     navigate('/login'); // Redirect to login page after logout
